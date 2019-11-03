@@ -55,12 +55,14 @@
                 :key="subitem.id"
               >
                 <i class="el-icon-menu"></i>
-                {{subitem.authName}}
+                {{subitem.path}}
               </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main class="main">Main</el-main>
+        <el-main class="main">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -90,7 +92,6 @@ export default {
     },
     async getmenus() {
       const { data: res } = await this.$http.get('menus')
-      console.log(res)
       if (res.meta.status !== 200) return this.$message.error('获取左侧菜单列表失败！')
       this.menus = res.data
 
